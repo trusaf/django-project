@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  django-dev:
+    image: python:3.11
+    container_name: django-dev-server
+    
+    # [핵심] 터미널 접속을 위한 필수 설정
+    tty: true
+    stdin_open: true
+    
+    network_mode: host
+    volumes:
+      - .:/app
+    
+    # 컨테이너가 죽지 않게 하는 명령
+    command: tail -f /dev/null
+    
+    environment:
+      - DEBUG=True
