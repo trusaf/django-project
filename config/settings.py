@@ -44,7 +44,7 @@ ALLOWED_HOSTS = [
 ##]
 CSRF_TRUSTED_ORIGINS = [
     # 장고 웹 서비스 접속 주소 (필수)
-    'https://cosri.synology.me:9980',
+    'https://cosri.synology.me:7443',
 
     # (선택) 만약 Code-Server 내부에서 장고로 API 요청을 보내거나,
     # Code-Server의 미리보기 기능으로 장고를 띄울 때 에러가 난다면 추가
