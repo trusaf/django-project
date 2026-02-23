@@ -98,8 +98,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'dg',           # 방금 생성한 DB 이름
+        'USER': 'dg',           # 방금 생성한 DB 사용자
+        'PASSWORD': 'qqaa12az~!DG',      # 사용자 비밀번호
+        'HOST': '127.0.0.1',             # 호스트 네트워크 공유
+        'PORT': '3307',                  # 시놀로지 MariaDB 10 포트 (중요)
     }
 }
 
