@@ -29,7 +29,7 @@ DEBUG = True
 # 1. 접속 허용 도메인 (ALLOWED_HOSTS)
 # 보안을 위해 모든 도메인('*')보다는 실제 사용하는 도메인을 명시하는 것이 좋습니다.
 ALLOWED_HOSTS = [
-    'django.cosri.synology.me',
+    'cosri.synology.me',
     'localhost',
     '127.0.0.1',
     '*' # 개발 중 편의를 위해 넣어둠 (나중에 배포 시 제거)
