@@ -13,6 +13,7 @@ python-dotenv==1.0.1
 # 5. 정적 파일 서빙 최적화 (CSS/JS 파일 처리용)
 whitenoise==6.6.0
 
-# 6. 파이썬용 MySQL 드라이버 추가
+# 6. 파이썬용 MySQL 드라이버, WhiteNoise 라이브러리 설치 추가
 Django>=4.2
 mysqlclient>=2.2.0
+whitenoise>=6.6.0
