@@ -1,0 +1,42 @@
+{% extends 'core/base.html' %}
+
+{% block title %}100년 일기 - MyNAS{% endblock %}
+
+{% block content %}
+<div style="margin-bottom: 40px; text-align: center; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+    <h2 style="margin-top: 0;">100년 일기 모아보기</h2>
+    <form method="GET" action="" style="margin-top: 15px; display: flex; justify-content: center; align-items: center; gap: 10px;">
+        <label for="date" style="font-weight: bold;">기준일 선택:</label>
+        <input type="date" id="date" name="date" value="{{ target_date|date:'Y-m-d' }}" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+        <button type="submit" style="padding: 9px 20px; background: #333; color: white; border: none; border-radius: 4px; cursor: pointer;">조회</button>
+    </form>
+    <p style="color: #666; font-size: 0.9rem; margin-top: 10px;">
+        선택한 날짜({{ target_date|date:'m월 d일' }})를 기준으로 최근 5년간의 기록을 조회합니다.
+    </p>
+</div>
+
+<div style="max-width: 800px; margin: 0 auto;">
+    {% for diary in diaries %}
+    <div style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px; border-left: 5px solid #007bff;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 15px;">
+            <a href="{% url 'diary:diary_detail' diary.pk %}" style="text-decoration: none; color: #333;">
+                <h3 style="margin: 0; font-size: 1.3rem;">{{ diary.target_date|date:'Y년' }} - {{ diary.title }}</h3>
+            </a>
+            <span style="color: #888; font-size: 0.9rem;">{{ diary.target_date|date:'Y-m-d' }}</span>
+        </div>
+        
+        <p style="color: #555; line-height: 1.6; margin: 0;">
+            {{ diary.content|truncatechars:200 }}
+        </p>
+        
+        <div style="text-align: right; margin-top: 15px;">
+            <a href="{% url 'diary:diary_detail' diary.pk %}" style="font-size: 0.95rem; color: #007bff; text-decoration: none; font-weight: bold;">본문 전체 보기 &rarr;</a>
+        </div>
+    </div>
+    {% empty %}
+    <div style="text-align: center; padding: 50px 20px; color: #777; background: #f9f9f9; border-radius: 8px; border: 1px dashed #ccc;">
+        {{ target_date|date:'m월 d일' }}에 작성된 최근 5년간의 일기 기록이 존재하지 않음.
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

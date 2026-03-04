@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <h2>일기장 목록</h2>
+    <a href="{% url 'diary:diary_create' %}" style="padding: 10px 15px; background: #28a745; color: white; text-decoration: none; border-radius: 4px;">새 일기 작성</a>
+</div>
+
+<form method="GET" action="" style="margin-bottom: 20px;">
+    <input type="text" name="q" placeholder="제목 또는 내용 검색" value="{{ request.GET.q }}" style="padding: 8px; width: 300px;">
+    <button type="submit" style="padding: 8px 15px;">검색</button>
+</form>
+
+<ul style="list-style: none; padding: 0;">
+    {% for diary in diaries %}
+    <li style="border-bottom: 1px solid #ddd; padding: 15px 0;">
+        <a href="{% url 'diary:diary_detail' diary.pk %}" style="text-decoration: none; font-size: 1.2rem; color: #333;">
+            [{{ diary.get_diary_type_display }}] {{ diary.title }}
+        </a>
+        <span style="color: #777; font-size: 0.9rem; margin-left: 10px;">{{ diary.target_date }} | {{ diary.author }}</span>
+    </li>
+    {% empty %}
+    <p>등록된 일기가 없습니다.</p>
+    {% endfor %}
+</ul>
+{% endblock %}

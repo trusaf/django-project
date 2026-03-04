@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}NAS 통합 서비스{% endblock %}</title>
+    <style>
+        /* MDN 스타일 GNB 기본 레이아웃 */
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; padding: 0; color: #333; }
+        .gnb { border-bottom: 1px solid #ccc; display: flex; padding: 0 20px; align-items: center; background-color: #fff; height: 60px; }
+        .gnb-logo { font-size: 1.2rem; font-weight: bold; text-decoration: none; color: #111; margin-right: 30px; }
+
+        /* 내비게이션 및 드롭다운 구조 */
+        .gnb-nav { display: flex; list-style: none; margin: 0; padding: 0; height: 100%; }
+        .gnb-item { position: relative; display: flex; align-items: center; height: 100%; margin-right: 5px; }
+        .gnb-link { text-decoration: none; color: #444; padding: 10px 15px; border-radius: 4px; transition: background-color 0.2s; }
+        .gnb-link:hover { background-color: #f0f0f0; }
+
+        /* 확장형 하위 메뉴 (CSS Hover 기반) */
+        .gnb-dropdown { display: none; position: absolute; top: 60px; left: 0; background-color: #fff; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); min-width: 180px; z-index: 1000; list-style: none; padding: 10px 0; margin: 0; }
+        .gnb-item:hover .gnb-dropdown { display: block; }
+        .gnb-dropdown-item a { display: block; padding: 10px 20px; text-decoration: none; color: #333; }
+        .gnb-dropdown-item a:hover { background-color: #f9f9f9; text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <header class="gnb">
+        <a href="{% url 'core:home' %}" class="gnb-logo">MyNAS</a>
+        <ul class="gnb-nav">
+            <li class="gnb-item">
+                <a href="{% url 'diary:diary_list' %}" class="gnb-link">일기장 ▾</a>
+                <ul class="gnb-dropdown">
+                    <li class="gnb-dropdown-item"><a href="{% url 'diary:100y_diary' %}">100년 일기</a></li>
+                    <li class="gnb-dropdown-item"><a href="{% url 'diary:diary_list' %}">함께 쓰는 일기</a></li>
+                    <li class="gnb-dropdown-item"><a href="{% url 'diary:diary_list' %}">가족 일기</a></li>
+                </ul>
+            </li>
+            <li class="gnb-item"><a href="#" class="gnb-link">블로그</a></li>
+            <li class="gnb-item"><a href="#" class="gnb-link">메모장</a></li>
+        </ul>
+    </header>
+
+    <main style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
+        {% block content %}
+        {% endblock content %}
+    </main>
+</body>
+</html>

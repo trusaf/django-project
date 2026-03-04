@@ -15,8 +15,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('diary/', include('diary.urls')),  # 이 줄을 반드시 추가
+    path('', include('core.urls')),         # 기존 메인 홈 라우팅
 ]

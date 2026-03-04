@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<div style="background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <h2 style="margin-top: 0;">{{ object.title }}</h2>
+    <p style="color: #666; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+        {{ object.target_date }} | 작성자: {{ object.author }} | 유형: {{ object.get_diary_type_display }}
+    </p>
+    <div style="margin: 20px 0; line-height: 1.6;">
+        {{ object.content|linebreaks }}
+    </div>
+
+    <div style="text-align: right; margin-top: 30px;">
+        <a href="{% url 'diary:diary_list' %}" style="margin-right: 10px; color: #555; text-decoration: none;">목록으로 돌아가기</a>
+        {% if request.user == object.author %}
+        <a href="{% url 'diary:diary_edit' object.pk %}" style="padding: 8px 15px; background: #ffc107; color: #333; text-decoration: none; border-radius: 4px; margin-right: 5px;">수정</a>
+        <a href="{% url 'diary:diary_delete' object.pk %}" style="padding: 8px 15px; background: #dc3545; color: white; text-decoration: none; border-radius: 4px;">삭제</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
